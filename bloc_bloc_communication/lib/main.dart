@@ -10,9 +10,7 @@ void main() {
       BlocProvider(
         create: (context) => ThemeBloc(),
       ),
-      BlocProvider(
-          create: (context) =>
-              CounterBloc(themeBloc: BlocProvider.of<ThemeBloc>(context))),
+      BlocProvider(create: (context) => CounterBloc()),
     ],
     child: const MaterialApp(
       home: HomePage(),
