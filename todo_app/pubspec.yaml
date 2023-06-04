@@ -38,6 +38,7 @@ dependencies:
   flutter_bloc:
   equatable:
   uuid:
+  percent_indicator:
 
 dev_dependencies:
   flutter_test:
