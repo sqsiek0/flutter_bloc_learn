@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_app/logic/todo_filter/todo_filter_cubit.dart';
 import 'package:todo_app/screens/home_page_screen.dart';
 
 void main() {
@@ -10,9 +12,19 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => TodoFilterCubit()
+        ),
+        BlocProvider(
+          create: (context) => TodoFilterCubit(),
+        ),
+      ],
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: HomePage(),
+      ),
     );
   }
 }
