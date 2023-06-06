@@ -61,7 +61,21 @@ Widget todayProgress(BuildContext context) {
                 )
               ],
             ),
-            TextField()
+            const SizedBox(
+              height: 16,
+            ),
+            TextField(
+              style: const TextStyle(color: Colors.white, fontSize: 18),
+              strutStyle: const StrutStyle(),
+              decoration: InputDecoration(
+                  hintText: "Enter what ToDo",
+                  hintStyle: TextStyle(color: Colors.white.withOpacity(0.6)),
+                  suffixIcon: Icon(
+                    Icons.send,
+                    color: Colors.white.withOpacity(0.6),
+                  )),
+              onSubmitted: (value) {},
+            ),
           ],
         ),
       ),
