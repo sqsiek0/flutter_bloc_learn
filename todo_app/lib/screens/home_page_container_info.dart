@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:bloc/bloc.dart';
+import 'package:todo_app/logic/list_todo/list_todo_cubit.dart';
+
+import '../logic/counter_todo/counter_todo_cubit.dart';
 
 Widget todayProgress(BuildContext context) {
+  final textClear = TextEditingController();
+
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 32),
     child: Container(
@@ -39,25 +46,41 @@ Widget todayProgress(BuildContext context) {
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  "10 tasks",
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w300),
+                BlocBuilder<CounterTodoCubit, CounterTodoState>(
+                  builder: (context, state) {
+                    return Text(
+                      "${state.todoCount} tasks",
+                      style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w300),
+                    );
+                  },
                 ),
-                LinearPercentIndicator(
-                  width: 120,
-                  percent: 0.4,
-                  progressColor: Colors.white,
-                  barRadius: const Radius.circular(8),
-                  trailing: const Text(
-                    "40%",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300),
-                  ),
+                BlocBuilder<TodoListCubit, TodoListState>(
+                  builder: (context, state) {
+                    int percValueUp = state.todos
+                        .where((element) => element.isCompleted == true)
+                        .toList()
+                        .length;
+                    int percValueDown = state.todos.length;
+                    double percValue = percValueUp / percValueDown;
+                    print(percValue);
+                    return LinearPercentIndicator(
+                      width: 120,
+                      percent: percValue,
+                      progressColor: Colors.white,
+                      barRadius: const Radius.circular(8),
+                      animation: true,
+                      trailing: Text(
+                        "${(percValue * 100).toInt()}%",
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w300),
+                      ),
+                    );
+                  },
                 )
               ],
             ),
@@ -67,6 +90,7 @@ Widget todayProgress(BuildContext context) {
             TextField(
               style: const TextStyle(color: Colors.white, fontSize: 18),
               strutStyle: const StrutStyle(),
+              controller: textClear,
               decoration: InputDecoration(
                   hintText: "Enter what ToDo",
                   hintStyle: TextStyle(color: Colors.white.withOpacity(0.6)),
@@ -74,7 +98,13 @@ Widget todayProgress(BuildContext context) {
                     Icons.send,
                     color: Colors.white.withOpacity(0.6),
                   )),
-              onSubmitted: (value) {},
+              onSubmitted: (value) {
+                BlocProvider.of<TodoListCubit>(context).addTodo(value);
+                textClear.clear();
+              },
+              onTapOutside: (event) {
+                FocusManager.instance.primaryFocus?.unfocus();
+              },
             ),
           ],
         ),

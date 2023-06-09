@@ -12,7 +12,7 @@ class TodoListState extends Equatable {
   factory TodoListState.initial() {
     return TodoListState(todos: [
       ToDo(id: "0", todoName: "Posprzataj"),
-      ToDo(id: "1", todoName: "Poucz sie")
+      ToDo(id: "1", todoName: "Poucz sie"),
     ]);
   }
 
