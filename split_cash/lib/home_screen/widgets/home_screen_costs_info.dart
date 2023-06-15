@@ -21,7 +21,11 @@ class HomeScreenCostsInfo extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
+<<<<<<< HEAD
                     "I'm owed",
+=======
+                    "I'm owned",
+>>>>>>> parent of 5b87de3 (Delete split_cash directory)
                     style: TextStyle(fontSize: 18),
                   ),
                   Row(
