@@ -21,7 +21,7 @@ class HomeScreenCostsInfo extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-                    "I'm owned",
+                    "I'm owed",
                     style: TextStyle(fontSize: 18),
                   ),
                   Row(
