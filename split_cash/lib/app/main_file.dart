@@ -4,6 +4,7 @@ import 'package:split_cash/add_costs_screen/adding_costs_main.dart';
 import 'package:split_cash/add_costs_screen/cubits/costs_dsc/costs_cubit.dart';
 import 'package:split_cash/add_costs_screen/cubits/currency/currency_cubit.dart';
 import 'package:split_cash/home_screen/home_screen_main_file.dart';
+import 'package:split_cash/split_costs_screen/cubits/cubit/peoples_cubit.dart';
 import 'package:split_cash/split_costs_screen/split_screen_main.dart';
 
 class MyApp extends StatelessWidget {
@@ -35,8 +36,18 @@ class MyApp extends StatelessWidget {
               ],
               child: const AddCostsMain(),
             ),
-        '/split': (context) => BlocProvider.value(
-              value: costCubit,
+        '/split': (context) => MultiBlocProvider(
+              providers: [
+                BlocProvider.value(
+                  value: costCubit,
+                ),
+                BlocProvider.value(
+                  value: currencyCubit,
+                ),
+                BlocProvider(
+                  create: (context) => PeoplesCubit(costCubit),
+                )
+              ],
               child: const SplitScreenMain(),
             )
       },
