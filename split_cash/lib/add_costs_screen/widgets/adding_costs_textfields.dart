@@ -7,35 +7,47 @@ class AddingCostsTextfields extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-        children: [
-          textfieldFunction(
-              const Icon(
-                Icons.shopping_bag_outlined,
-                size: 32,
-                color: Colors.black,
-              ),
-              "Description"),
-          const SizedBox(
-            height: 16,
-          ),
-          textfieldFunction(
-              const Icon(Icons.money, size: 32, color: Colors.black), "0.00"),
-          const SizedBox(
-            height: 16,
-          ),
-          textfieldFunction(
-              const Icon(Icons.date_range_outlined,
-                  size: 32, color: Colors.black),
-              "Date"),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            textfieldFunction(
+                const Icon(
+                  Icons.shopping_bag_outlined,
+                  size: 32,
+                  color: Colors.black,
+                ),
+                "Description",
+                TextInputType.text,
+                TextInputAction.next),
+            const SizedBox(
+              height: 16,
+            ),
+            textfieldFunction(
+                const Icon(Icons.money, size: 32, color: Colors.black),
+                "0.00",
+                TextInputType.number,
+                TextInputAction.next),
+            const SizedBox(
+              height: 16,
+            ),
+            textfieldFunction(
+                const Icon(Icons.date_range_outlined,
+                    size: 32, color: Colors.black),
+                "Date",
+                TextInputType.number,
+                TextInputAction.done),
+          ],
+        ),
       ),
     );
   }
 }
 
-Widget textfieldFunction(Icon textfieldIcon, String desc) {
+Widget textfieldFunction(Icon textfieldIcon, String desc,
+    TextInputType inputType, TextInputAction textInputAction) {
   return TextField(
+    keyboardType: inputType,
+    textInputAction: textInputAction,
     decoration: InputDecoration(
         // hintText: "Description",
         label: Text(desc),

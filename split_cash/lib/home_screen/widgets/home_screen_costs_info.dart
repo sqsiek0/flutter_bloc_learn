@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:split_cash/add_costs_screen/cubits/currency/currency_cubit.dart';
 
 class HomeScreenCostsInfo extends StatelessWidget {
   const HomeScreenCostsInfo({super.key});
@@ -21,11 +23,7 @@ class HomeScreenCostsInfo extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-<<<<<<< HEAD
                     "I'm owed",
-=======
-                    "I'm owned",
->>>>>>> parent of 5b87de3 (Delete split_cash directory)
                     style: TextStyle(fontSize: 18),
                   ),
                   Row(

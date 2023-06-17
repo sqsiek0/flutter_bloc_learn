@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:split_cash/add_costs_screen/cubits/currency/currency_cubit.dart';
 import 'package:split_cash/home_screen/home_screen_main_file.dart';
 
 class AddingCostsAppBar extends StatelessWidget {
@@ -22,7 +24,10 @@ class AddingCostsAppBar extends StatelessWidget {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const HomeScreen(),
+                    builder: (_) => BlocProvider.value(
+                      value: BlocProvider.of<CurrencyCubit>(context),
+                      child: const HomeScreen(),
+                    ),
                   ),
                   ModalRoute.withName('/'));
             },
@@ -43,10 +48,18 @@ class AddingCostsAppBar extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8)),
                 width: 75,
                 child: Center(
-                  child: DropdownButton(
-                    items: currency.map(buildList).toList(),
-                    hint: const Text("PLN"),
-                    onChanged: (value) {},
+                  child: BlocBuilder<CurrencyCubit, CurrencyState>(
+                    builder: (context, state) {
+                      return DropdownButton(
+                        items: currency.map(buildList).toList(),
+                        hint: const Text("PLN"),
+                        value: state.currency,
+                        onChanged: (value) {
+                          BlocProvider.of<CurrencyCubit>(context)
+                              .changeCurrency(value!);
+                        },
+                      );
+                    },
                   ),
                 ),
               )
