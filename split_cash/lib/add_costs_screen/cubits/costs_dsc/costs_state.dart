@@ -11,7 +11,7 @@ class CostState extends Equatable {
   factory CostState.initial() {
     return CostState(
         costModel:
-            CostModel(description: "", price: 0.0, dateTime: DateTime.monday));
+            CostModel(description: "", price: 0.0, dateTime: ""));
   }
 
   @override
