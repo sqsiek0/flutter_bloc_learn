@@ -9,33 +9,53 @@ class AddingCostsTextfields extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            textfieldFunction(
-                const Icon(
-                  Icons.shopping_bag_outlined,
-                  size: 32,
-                  color: Colors.black,
+            Column(
+              children: [
+                textfieldFunction(
+                    const Icon(
+                      Icons.shopping_bag_outlined,
+                      size: 32,
+                      color: Colors.black,
+                    ),
+                    "Description",
+                    TextInputType.text,
+                    TextInputAction.next),
+                const SizedBox(
+                  height: 16,
                 ),
-                "Description",
-                TextInputType.text,
-                TextInputAction.next),
-            const SizedBox(
-              height: 16,
+                textfieldFunction(
+                    const Icon(Icons.money, size: 32, color: Colors.black),
+                    "0.00",
+                    TextInputType.number,
+                    TextInputAction.next),
+                const SizedBox(
+                  height: 16,
+                ),
+                textfieldFunction(
+                    const Icon(Icons.date_range_outlined,
+                        size: 32, color: Colors.black),
+                    "Date",
+                    TextInputType.datetime,
+                    TextInputAction.done),
+              ],
             ),
-            textfieldFunction(
-                const Icon(Icons.money, size: 32, color: Colors.black),
-                "0.00",
-                TextInputType.number,
-                TextInputAction.next),
             const SizedBox(
-              height: 16,
+              height: 176,
             ),
-            textfieldFunction(
-                const Icon(Icons.date_range_outlined,
-                    size: 32, color: Colors.black),
-                "Date",
-                TextInputType.number,
-                TextInputAction.done),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/split');
+                },
+                style: const ButtonStyle(
+                    minimumSize: MaterialStatePropertyAll(Size.fromHeight(50)),
+                    backgroundColor:
+                        MaterialStatePropertyAll(Color(0xff1f212b))),
+                child: const Text(
+                  "Next",
+                  style: TextStyle(fontSize: 16),
+                ))
           ],
         ),
       ),
@@ -64,6 +84,8 @@ Widget textfieldFunction(Icon textfieldIcon, String desc,
         focusedBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.transparent)),
         prefixIcon: textfieldIcon),
-    onSubmitted: (value) {},
+    onChanged: (value) {
+      print(value);
+    },
   );
 }

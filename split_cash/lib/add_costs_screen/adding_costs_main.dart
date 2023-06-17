@@ -15,10 +15,10 @@ class AddCostsMain extends StatelessWidget {
         children: [
           AddingCostsAppBar(),
           const Expanded(child: AddingCostsTextfields()),
-          const Padding(
-            padding: EdgeInsets.all(24),
-            child: AddingCostsButton(),
-          ),
+          // const Padding(
+          //   padding: EdgeInsets.all(24),
+          //   child: AddingCostsButton(),
+          // ),
         ],
       )),
     );

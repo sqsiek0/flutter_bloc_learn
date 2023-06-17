@@ -66,7 +66,7 @@ class AddingCostsAppBar extends StatelessWidget {
             ],
           ),
           const SizedBox(
-            height: 32,
+            height: 16,
           )
         ],
       ),

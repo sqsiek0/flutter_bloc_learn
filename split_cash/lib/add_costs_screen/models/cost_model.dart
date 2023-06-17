@@ -3,8 +3,8 @@ import 'dart:ffi';
 
 class CostModel {
   String description;
-  Double price;
-  DateTime dateTime;
+  double price;
+  String dateTime;
 
   CostModel({
     required this.description,
