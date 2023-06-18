@@ -13,7 +13,7 @@ class SplitScreenMain extends StatelessWidget {
     return const SafeArea(
         child: Scaffold(
             body: Column(
-      children: [SplitScreenAppBar(), SplitScreenPeoples()],
+      children: [SplitScreenAppBar(), Expanded(child: SplitScreenPeoples())],
     )));
   }
 }

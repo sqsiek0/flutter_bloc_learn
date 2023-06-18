@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
                   value: currencyCubit,
                 ),
                 BlocProvider(
-                  create: (context) => PeoplesCubit(costCubit),
+                  create: (context) => PeoplesCubit(costCubit: costCubit),
                 )
               ],
               child: const SplitScreenMain(),

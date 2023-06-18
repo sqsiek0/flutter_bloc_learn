@@ -14,9 +14,9 @@ class PeoplesCubit extends Cubit<PeoplesState> {
   final CostCubit costCubit;
   late StreamSubscription costSubscription;
 
-  PeoplesCubit(
-    this.costCubit,
-  ) : super(PeoplesState.initial()) {
+  PeoplesCubit({
+    required this.costCubit,
+  }) : super(PeoplesState.initial()) {
     costSubscription = costCubit.stream.listen((event) {
       final double newWholePrice = event.costModel.price;
       emit(PeoplesState(peoples: state.peoples, wholeCash: newWholePrice));
